@@ -10,7 +10,7 @@ const routes = Router();
 
 routes.get('/users', getUsers);
 routes.post('/users', createUser);
-routes.put('/users', updateUser);
-routes.delete('/users', deleteUser);
+routes.put('/users/:id', updateUser);
+routes.delete('/users/:id', deleteUser);
 
 export default routes;

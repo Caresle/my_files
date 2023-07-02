@@ -6,9 +6,10 @@ import 'reflect-metadata';
 
 const app : Application = express();
 
-app.use(usersRoutes);
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+
+app.use(usersRoutes);
 
 export default app;
