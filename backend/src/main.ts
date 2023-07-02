@@ -1,18 +1,19 @@
 import DotEnv from 'dotenv';
-import express, { Application } from 'express';
-import usersRoutes from './routes/users.routes';
-
+import app from './app';
 DotEnv.config();
+import { AppDataSource } from './db';
 
 
 const PORT = process.env.PORT || 3000;
 
-const app : Application = express();
+async function main() {
+	try {
+		await AppDataSource.initialize();
+		app.listen(PORT);
+		console.log(`Server on PORT ${PORT}`);
+	} catch (error) {
+		console.error(error);
+	}
+}
 
-app.use(usersRoutes);
-
-app.listen(PORT, () => {
-	console.log(`Server on PORT ${PORT}`);
-});
-
-
+main();

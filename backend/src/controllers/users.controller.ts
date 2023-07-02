@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { User } from '../entity/user.entity';
 
 export const getUsers = (_: Request, res: Response) : Response => {
 	return res.json({
@@ -7,12 +8,16 @@ export const getUsers = (_: Request, res: Response) : Response => {
 };
 
 export const createUser = (req: Request, res: Response) : Response => {
+	User.save({
+		username: 'Carlos',
+		password: 'asldkjasd',
+	});
 	return res.json({
 		data: 'user created'
 	});
 };
 
-export const updateUSer = (req: Request, res: Response) : Response => {
+export const updateUser = (req: Request, res: Response) : Response => {
 	return res.json({
 		data: 'user updated',
 	});
