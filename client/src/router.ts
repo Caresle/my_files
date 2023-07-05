@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Home from "./views/Home";
 import About from "./views/About";
+import Login from "./views/Login";
 
 interface IMetaData {
 	name?: string;
@@ -26,6 +27,11 @@ const routes : Array<IRouteItem> = [
 		name: 'About',
 		path: '/about',
 		component: About
+	},
+	{
+		name: 'Login',
+		path: '/login',
+		component: Login
 	}
 ];
 
