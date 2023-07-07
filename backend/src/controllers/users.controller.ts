@@ -1,22 +1,12 @@
 import { Request, Response } from 'express';
 import { User } from '../entity/user.entity';
 import bcrypt from 'bcrypt';
-import { IErrorUser } from '../helpers/responseError.helper';
+import { getError } from '../helpers/responseError.helper';
 
 const secret = process.env.SECRET_PASS ?? 10;
 
 const generatePassword = (text: string) => {
 	return bcrypt.hashSync(text, secret);
-};
-
-const getError = (msg : string | Array<string>) : IErrorUser => {
-	const error : IErrorUser = {
-		success: false,
-		message: (typeof msg === 'string') ? msg : [...msg],
-		data: [],
-	};
-
-	return error;
 };
 
 export const getUsers = async (_: Request, res: Response) => {

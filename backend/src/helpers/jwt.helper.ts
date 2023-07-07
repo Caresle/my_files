@@ -21,18 +21,19 @@ export interface IJWTInvalidToken {
 }
 
 export const createJWT = (payload: IJWTUserInfo) => {
-	console.log(SECRET);
 	const token = jwt.sign(payload, SECRET, {
 		expiresIn: '12h'
 	});
 	return token;
 };
 
-export const validateJWT = (token: string) => {
+export const validateJWT = (token: string) : IJWTUserInfo | IJWTInvalidToken => {
 	const verify = jwt.verify(token, SECRET);
 
-	console.log('validate');
-	console.log(verify);
-	if (!verify) return false;
-	return verify;
+	if (!verify) return {
+		status: false,
+		message: 'Invalid token',
+	};
+
+	return verify as IJWTUserInfo;
 };
