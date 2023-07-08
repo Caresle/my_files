@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import {
 	createJWT,
+	IJWTInvalidToken,
 	IJWTUserInfo,
 	validateJWT,
 } from '../helpers/jwt.helper';
@@ -51,7 +52,10 @@ export const executeLogin = async (req: Request, res: Response) => {
 export const testLogin = (req: Request, res: Response) => {
 	const token = req.headers['api-key'] as string;
 
-	validateJWT(token);
+	const status : IJWTUserInfo | IJWTInvalidToken = validateJWT(token);
+
+	if ('status' in status)
+		return res.status(401).json(status);
 
 	return res.json({
 		success: true,

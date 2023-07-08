@@ -28,12 +28,21 @@ export const createJWT = (payload: IJWTUserInfo) => {
 };
 
 export const validateJWT = (token: string) : IJWTUserInfo | IJWTInvalidToken => {
-	const verify = jwt.verify(token, SECRET);
+	try {
+		const verify = jwt.verify(token, SECRET);
 
-	if (!verify) return {
-		status: false,
-		message: 'Invalid token',
-	};
+		if (!verify) return {
+			status: false,
+			message: 'Invalid token',
+		} as IJWTInvalidToken;
 
-	return verify as IJWTUserInfo;
+		return verify as IJWTUserInfo;
+	} catch (error) {
+		console.log(error);
+		return {
+			status: false,
+			message: 'Invalid token'
+		} as IJWTInvalidToken;
+	}
+
 };
