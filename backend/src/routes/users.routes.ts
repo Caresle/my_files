@@ -5,12 +5,15 @@ import {
 	updateUser,
 	deleteUser,
 } from '../controllers/users.controller';
+import {
+	isAuth
+} from '../middlewares/auth.middleware';
 
 const routes = Router();
 
-routes.get('/users', getUsers);
-routes.post('/users', createUser);
-routes.put('/users/:id', updateUser);
-routes.delete('/users/:id', deleteUser);
+routes.get('/users', isAuth, getUsers);
+routes.post('/users', isAuth, createUser);
+routes.put('/users/:id', isAuth, updateUser);
+routes.delete('/users/:id', isAuth, deleteUser);
 
 export default routes;
