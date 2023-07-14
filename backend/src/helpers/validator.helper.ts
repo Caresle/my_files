@@ -8,7 +8,7 @@ export default class Validator {
 		return false;
 	}
 
-	static minLength(value : string, length : number) : boolean {
+	static minLength(value : string | Array<unknown>, length : number) : boolean {
 		if (value.length >= length) return true;
 		return false;
 	}
@@ -33,5 +33,10 @@ export default class Validator {
 	 */
 	static isPositive(value: number) : boolean {
 		return value >= 0;
+	}
+
+	static isArray(value: unknown) : boolean {
+		if (value instanceof Array) return true;
+		return false;
 	}
 }

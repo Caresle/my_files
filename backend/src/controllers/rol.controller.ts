@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { Rol } from '../entity/rol.entity';
 import { getError } from '../helpers/responseError.helper';
+import Validator from '../helpers/validator.helper';
+import ErrorMessage from '../helpers/errorMessage.helper';
 
 export const getRoles = async (_: Request, res: Response) => {
 	try {
@@ -17,17 +19,45 @@ export const getRoles = async (_: Request, res: Response) => {
 
 export const createRol = (req: Request, res: Response) => {
 	if (
-		req.body === undefined ||
-		req.body === null ||
-		req.body === ''
-	) return getError('Invalid JSON');
+		Validator.empty(req.body)
+	) return res.status(400).json(getError(ErrorMessage.invalidJSON()));
 
 	const {
 		rolName,
 		rights,
 	} = req.body;
 
-	// if ()
+	// Check rolName and rights are not empty
+
+	if (Validator.empty(rolName)) {
+		return res.status(400).json(
+			getError(ErrorMessage.required('rolName'))
+		);
+	}
+
+	if (Validator.empty(rights)) {
+		return res.status(400).json(
+			getError(ErrorMessage.required('rights'))
+		);
+	}
+
+	// rolName validations
+
+	if (!Validator.betweenLength(rolName, 5, 255)) {
+		return res.status(400).json(
+			getError(
+				ErrorMessage.between('rolName', 5, 255)
+			)
+		);
+	}
+
+	if (!Validator.minLength(rights, 5)) {
+		return res.status(400).json(
+			getError(
+				ErrorMessage.minLength('rights', 5)
+			)
+		);
+	}
 
 	return res.json({
 		success: true,
