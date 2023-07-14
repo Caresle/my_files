@@ -5,13 +5,13 @@ import {
 	updateRol,
 	deleteRol
 } from '../controllers/rol.controller';
-
+import { isAuth } from '../middlewares/auth.middleware';
 
 const routes = Router();
 
-routes.get('/rol', getRoles);
-routes.post('/rol', createRol);
-routes.put('/rol', updateRol);
-routes.delete('/rol', deleteRol);
+routes.get('/rol', isAuth, getRoles);
+routes.post('/rol', isAuth, createRol);
+routes.put('/rol', isAuth, updateRol);
+routes.delete('/rol', isAuth, deleteRol);
 
 export default routes;

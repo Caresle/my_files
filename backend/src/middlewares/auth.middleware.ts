@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import {
 	validateJWT
 } from '../helpers/jwt.helper';
+import {
+	getError
+} from '../helpers/responseError.helper';
 
 export const isAuth = (req: Request, res: Response, next: NextFunction) => {
 	const token = req.headers['api-key'] as string;
@@ -10,21 +13,16 @@ export const isAuth = (req: Request, res: Response, next: NextFunction) => {
 		token === undefined
 		|| token === null
 		|| token === ''
-	)
-		return res.status(400).json({
-			success: false,
-			message: 'No API-KEY header',
-			data: []
-		});
+	) {
+		const error = getError('No API-KEY header');
+		return res.status(400).json(error);
+	}
 
 	const validate = validateJWT(token);
 
 	if ('status' in validate) {
-		return res.status(400).json({
-			success: false,
-			message: 'Invalid Token',
-			data: [],
-		});
+		const error = getError('Invalid Token');
+		return res.status(400).json(error);
 	}
 
 	return next();

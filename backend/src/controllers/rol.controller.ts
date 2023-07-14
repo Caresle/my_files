@@ -27,7 +27,7 @@ export const createRol = (req: Request, res: Response) => {
 		rights,
 	} = req.body;
 
-	if ()
+	// if ()
 
 	return res.json({
 		success: true,
