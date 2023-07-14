@@ -16,6 +16,19 @@ export const getRoles = async (_: Request, res: Response) => {
 };
 
 export const createRol = (req: Request, res: Response) => {
+	if (
+		req.body === undefined ||
+		req.body === null ||
+		req.body === ''
+	) return getError('Invalid JSON');
+
+	const {
+		rolName,
+		rights,
+	} = req.body;
+
+	if ()
+
 	return res.json({
 		success: true,
 		message: 'created',
