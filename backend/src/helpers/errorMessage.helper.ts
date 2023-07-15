@@ -22,4 +22,8 @@ export default class ErrorMessage {
 	static isArray(field: string) : string {
 		return `The ${field} must be an array`;
 	}
+
+	static exists(data: string, table: string) : string {
+		return `The ${data} already exists in ${table} table`;
+	}
 }

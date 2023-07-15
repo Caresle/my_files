@@ -12,12 +12,13 @@ export const getRoles = async (_: Request, res: Response) => {
 			data: roles
 		});
 	} catch (error) {
+		console.log(error);
 		if (error instanceof Error)
 			return res.status(500).json(getError('Server error'));
 	}
 };
 
-export const createRol = (req: Request, res: Response) => {
+export const createRol = async (req: Request, res: Response) => {
 	if (
 		Validator.empty(req.body)
 	) return res.status(400).json(getError(ErrorMessage.invalidJSON()));
@@ -51,17 +52,48 @@ export const createRol = (req: Request, res: Response) => {
 		);
 	}
 
-	if (!Validator.minLength(rights, 5)) {
+	// Check if the rolName doesn't exist's already
+
+	const duplicated = await Rol.findOneBy({
+		name: rolName
+	});
+
+	if (duplicated !== null) {
 		return res.status(400).json(
 			getError(
-				ErrorMessage.minLength('rights', 5)
+				ErrorMessage.exists(rolName, 'rol')
 			)
 		);
 	}
 
+	// Rights validations
+
+	if (!Validator.isArray(rights)) {
+		return res.status(400).json(
+			getError(
+				ErrorMessage.isArray('rights')
+			)
+		);
+	}
+
+	if (!Validator.minLength(rights, 1)) {
+		return res.status(400).json(
+			getError(
+				ErrorMessage.minLength('rights', 1)
+			)
+		);
+	}
+
+	const response = await Rol.save({
+		name: rolName,
+		// Temporary
+		idRights: 0
+	});
+
 	return res.json({
 		success: true,
 		message: 'created',
+		data: response
 	});
 };
 
