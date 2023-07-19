@@ -97,7 +97,53 @@ export const createRol = async (req: Request, res: Response) => {
 	});
 };
 
-export const updateRol = (req: Request, res: Response) => {
+export const updateRol = async (req: Request, res: Response) => {
+	if (Validator.empty(req.body)) {
+		return res.status(400).json(
+			getError(ErrorMessage.invalidJSON())
+		);
+	}
+
+	const { id } = req.body;
+
+	if (Validator.empty(id)) {
+		return res.status(400).json(
+			getError(ErrorMessage.required('id'))
+		);
+	}
+
+	// Chekc if the id exist in the db
+	const rol = await Rol.findOneBy({
+		id
+	});
+
+	// Rol doesn't exists
+	if (rol === null) {
+		return res.status(400).json(
+			getError(ErrorMessage.invalid('id'))
+		);
+	}
+
+	const { rolName, rights } = req.body;
+
+	if (Validator.empty(rolName)) {
+		return res.status(400).json(
+			getError(ErrorMessage.required('id'))
+		);
+	}
+
+	if (Validator.empty(rights)) {
+		return res.status(400).json(
+			getError(ErrorMessage.required('rights'))
+		);
+	}
+
+	if (!Validator.betweenLength(rolName, 5, 255)) {
+		return res.status(400).json(
+			getError(ErrorMessage.between('rolName', 5, 255))
+		);
+	}
+
 	return res.json({
 		success: true,
 		message: 'updated',

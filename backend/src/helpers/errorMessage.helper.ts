@@ -26,4 +26,8 @@ export default class ErrorMessage {
 	static exists(data: string, table: string) : string {
 		return `The ${data} already exists in ${table} table`;
 	}
+
+	static invalid(field: string) : string {
+		return `The ${field} provided is invalid`;
+	}
 }
