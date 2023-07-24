@@ -150,7 +150,26 @@ export const updateRol = async (req: Request, res: Response) => {
 	});
 };
 
-export const deleteRol = (req: Request, res: Response) => {
+export const deleteRol = async (req: Request, res: Response) => {
+	if (Validator.empty(req.body))
+		return getError(ErrorMessage.invalidJSON());
+
+	const { id } = req.body;
+
+	if (Validator.empty(id))
+		return getError(ErrorMessage.invalid('id'));
+
+	const rol = await Rol.delete({
+		id,
+	});
+
+	if (rol.affected === 0) {
+		return res.json({
+			success: true,
+			message: 'Not found',
+		});
+	}
+
 	return res.json({
 		success: true,
 		message: 'deleted'
