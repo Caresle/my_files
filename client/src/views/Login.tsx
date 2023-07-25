@@ -2,36 +2,20 @@ import { FC } from "react";
 import {
 	Card,
 	CardContent,
-	Typography,
-	TextField,
-	Button,
-	FormControl,
 	Container,
-} from '@mui/material'
+} from '@mui/material';
+import FormContainer from "../components/login/FormContainer";
 
 const Login : FC = () => {
 	return (
-		<Container>
-			<Card>
+		<Container maxWidth={"sm"}>
+			<Card sx={{ my: 3 }}>
 				<CardContent>
-					<FormControl>
-						<Typography variant="h3" align="center">
-							Login
-						</Typography>
-						<div>
-							<TextField label="Username" required></TextField>
-						</div>
-						<div>
-							<TextField label="Password" type="password" required></TextField>
-						</div>
-						<div>
-							<Button variant="contained" size="large">Login</Button>
-						</div>
-					</FormControl>
+					<FormContainer />
 				</CardContent>
 			</Card>
 		</Container>
-	)
-}
+	);
+};
 
-export default Login
+export default Login;
