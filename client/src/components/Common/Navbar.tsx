@@ -8,9 +8,12 @@ import {
 	Drawer,
 	ListItem,
 	ListItemButton,
+	ListItemIcon,
+	SvgIconProps,
 } from '@mui/material';
 
 import { Menu as MenuIcon } from '@mui/icons-material'
+import React from "react";
 
 const Navbar : FC = () => {
 	const [drawer, setDrawer] = useState(false);
@@ -36,6 +39,13 @@ const Navbar : FC = () => {
 								return (
 									<ListItem key={e.path}>
 										<ListItemButton>
+											<ListItemIcon>
+												{
+													(e.meta?.icon) ?
+														React.createElement(e.meta.icon)
+														: <></>
+												}
+											</ListItemIcon>
 											<Link to={e.path}>{e.name}</Link>
 										</ListItemButton>
 									</ListItem>
