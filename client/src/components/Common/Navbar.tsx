@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Link } from 'react-router-dom';
-import routes from "../../router";
+import routes, { IRouteItem } from "../../router";
 import {
 	AppBar,
 	Toolbar,
@@ -9,17 +9,36 @@ import {
 	ListItem,
 	ListItemButton,
 	ListItemIcon,
-	SvgIconProps,
 } from '@mui/material';
 
 import { Menu as MenuIcon } from '@mui/icons-material'
-import React from "react";
 
 const Navbar : FC = () => {
 	const [drawer, setDrawer] = useState(false);
 
 	const openDrawer = (value: boolean) => {
 		setDrawer(value);
+	};
+
+	const getIcon = (e: IRouteItem) => {
+		return e.meta?.icon ? <e.meta.icon /> : <></>
+	};
+
+	const generateRoutes = (e : IRouteItem) => {
+		if (e.meta?.show) {
+			return (
+				<ListItem key={e.path}>
+					<Link to={e.path}>
+						<ListItemButton>
+							<ListItemIcon>
+								{ getIcon(e) }
+							</ListItemIcon>
+							{e.name}
+						</ListItemButton>
+					</Link>
+				</ListItem>
+			)
+		}
 	};
 
 	return (
@@ -34,24 +53,7 @@ const Navbar : FC = () => {
 			<Drawer anchor="left" open={ drawer } onClose={() => openDrawer(false)}>
 				<nav>
 					<ul>
-						{
-							routes.map(e => {
-								return (
-									<ListItem key={e.path}>
-										<ListItemButton>
-											<ListItemIcon>
-												{
-													(e.meta?.icon) ?
-														React.createElement(e.meta.icon)
-														: <></>
-												}
-											</ListItemIcon>
-											<Link to={e.path}>{e.name}</Link>
-										</ListItemButton>
-									</ListItem>
-								)
-							})
-						}
+						{ routes.map(generateRoutes) }
 					</ul>
 				</nav>
 			</Drawer>

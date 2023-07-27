@@ -7,10 +7,15 @@ import {
 	FormControl,
 	Box,
 } from '@mui/material';
+import GeneralAlert, { ESeverityAlert } from '../Common/GeneralAlert';
 
 const FormContainer : FC = () => {
 	return (
 		<FormControl fullWidth>
+			<GeneralAlert severity={ ESeverityAlert.Success }
+				text='You will be redirect in a moment'
+				title='Successful login'
+			/>
 			<Typography variant="h3" align="center">
 				Login
 			</Typography>

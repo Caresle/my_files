@@ -16,7 +16,7 @@ interface IMetaData {
 	show?: boolean;
 }
 
-interface IRouteItem {
+export interface IRouteItem {
 	name: string;
 	path: string;
 	component: FC;
@@ -29,7 +29,8 @@ const routes : Array<IRouteItem> = [
 		path: '/',
 		component: Home,
 		meta: {
-			icon: IconHome
+			icon: IconHome,
+			show: true,
 		}
 	},
 	{
@@ -38,6 +39,7 @@ const routes : Array<IRouteItem> = [
 		component: About,
 		meta: {
 			icon: IconInfo,
+			show: true,
 		}
 	},
 	{
@@ -46,6 +48,7 @@ const routes : Array<IRouteItem> = [
 		component: Login,
 		meta: {
 			icon: IconLogin,
+			show: false
 		}
 	}
 ];
