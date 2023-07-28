@@ -12,27 +12,25 @@ export enum ESeverityAlert {
 	Warning = 'warning',
 }
 
-interface IGeneralAlertProps {
+export interface IGeneralAlertProps {
 	title?: string;
 	text?: string;
-	severity?: ESeverityAlert
+	severity?: ESeverityAlert,
+	show: boolean,
 }
 
 const GeneralAlert : FC<IGeneralAlertProps> = (props : IGeneralAlertProps) => {
-	const { title, text, severity } = props;
-	const [ showAlert, setShowAlert ] = useState(false);
-
-	const show = () => {
-		setShowAlert(true);
-	};
+	const { title, text, severity, show } = props;
+	const [ showAlert, setShowAlert ] = useState(show);
 
 	const hide = () => {
+		console.log('click');
 		setShowAlert(false);
 	};
 
 	return (
 		<Collapse in={showAlert}>
-			<Alert severity={ severity } onClose={() => { hide }}>
+			<Alert severity={ severity } onClose={hide}>
 				<AlertTitle>{ title }</AlertTitle>
 				{ text }
 			</Alert>
