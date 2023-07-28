@@ -1,13 +1,30 @@
-import { Router } from 'express';
+// import { Router } from 'express';
 
 import {
 	executeLogin,
 	testLogin
 } from '../controllers/login.controller';
 
-const routes = Router();
+import {
+	RouterGenerator,
+	ERouterActions,
+} from '../helpers/router.helper';
 
-routes.get('/login', testLogin);
-routes.post('/login', executeLogin);
+// const routes = Router();
+
+// routes.get('/login', testLogin);
+// routes.post('/login', executeLogin);
+
+const routes = RouterGenerator.resource({
+	path: '/login',
+	actions: [
+		ERouterActions.GET,
+		ERouterActions.POST
+	],
+	functions: [
+		testLogin,
+		executeLogin,
+	]
+});
 
 export default routes;
