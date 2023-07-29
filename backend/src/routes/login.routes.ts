@@ -1,5 +1,3 @@
-// import { Router } from 'express';
-
 import {
 	executeLogin,
 	testLogin
@@ -10,11 +8,6 @@ import {
 	ERouterActions,
 } from '../helpers/router.helper';
 
-// const routes = Router();
-
-// routes.get('/login', testLogin);
-// routes.post('/login', executeLogin);
-
 const routes = RouterGenerator.resource({
 	path: '/login',
 	actions: [
@@ -24,7 +17,7 @@ const routes = RouterGenerator.resource({
 	functions: [
 		testLogin,
 		executeLogin,
-	]
+	],
 });
 
 export default routes;
