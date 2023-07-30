@@ -1,19 +1,23 @@
-import { Router } from 'express';
-
 import { isAuth } from '../middlewares/auth.middleware';
-
 import {
 	getFiles,
 	createFiles,
 	updateFiles,
 	deleteFiles,
 } from '../controllers/files.controller';
+import { RouterGenerator } from '../helpers/router.helper';
 
-const routes = Router();
-
-routes.get('/files', isAuth, getFiles);
-routes.post('/files', isAuth, createFiles);
-routes.put('/files', isAuth, updateFiles);
-routes.delete('/files', isAuth, deleteFiles);
+const routes = RouterGenerator.resourceAll({
+	path: '/files',
+	functions: [
+		getFiles,
+		createFiles,
+		updateFiles,
+		deleteFiles,
+	],
+	middlewares: [
+		isAuth
+	]
+});
 
 export default routes;
