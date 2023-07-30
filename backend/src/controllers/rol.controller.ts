@@ -104,17 +104,16 @@ export const updateRol = async (req: Request, res: Response) => {
 		);
 	}
 
-	const { id } = req.body;
+	const { id } = req.params;
 
 	if (Validator.empty(id)) {
 		return res.status(400).json(
 			getError(ErrorMessage.required('id'))
 		);
 	}
-
 	// Chekc if the id exist in the db
 	const rol = await Rol.findOneBy({
-		id
+		id: +id
 	});
 
 	// Rol doesn't exists
@@ -128,7 +127,7 @@ export const updateRol = async (req: Request, res: Response) => {
 
 	if (Validator.empty(rolName)) {
 		return res.status(400).json(
-			getError(ErrorMessage.required('id'))
+			getError(ErrorMessage.required('rolName'))
 		);
 	}
 

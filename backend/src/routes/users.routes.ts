@@ -1,4 +1,3 @@
-import { Router } from 'express';
 import {
 	getUsers,
 	createUser,
@@ -8,12 +7,19 @@ import {
 import {
 	isAuth
 } from '../middlewares/auth.middleware';
+import { RouterGenerator } from '../helpers/router.helper';
 
-const routes = Router();
-
-routes.get('/users', isAuth, getUsers);
-routes.post('/users', isAuth, createUser);
-routes.put('/users/:id', isAuth, updateUser);
-routes.delete('/users/:id', isAuth, deleteUser);
+const routes = RouterGenerator.resourceAll({
+	path: '/users',
+	functions: [
+		getUsers,
+		createUser,
+		updateUser,
+		deleteUser,
+	],
+	middlewares: [
+		isAuth,
+	],
+});
 
 export default routes;
