@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from './entity/user.entity';
 import { Rol } from './entity/rol.entity';
+import { FileModel } from './entity/fileModel.entity';
 
 interface IDBConfig {
 	name?: string;
@@ -32,6 +33,7 @@ export const AppDataSource = new DataSource({
 	entities: [
 		User,
 		Rol,
+		FileModel,
 	],
 	synchronize: true,
 });
