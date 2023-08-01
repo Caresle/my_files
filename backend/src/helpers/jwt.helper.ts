@@ -5,6 +5,7 @@
  */
 
 import jwt from 'jsonwebtoken';
+import { Request } from 'express';
 
 const SECRET = process.env.JWT_SECRET ?? '';
 
@@ -44,5 +45,32 @@ export const validateJWT = (token: string) : IJWTUserInfo | IJWTInvalidToken => 
 			message: 'Invalid token'
 		} as IJWTInvalidToken;
 	}
+};
 
+export const getUserFromJWT = (req: Request) : IJWTUserInfo => {
+	const invalidUser : IJWTUserInfo = {
+		username: '',
+		rights: [],
+		rol: '',
+	};
+
+	try {
+		const token = req.headers['api-key'] as string;
+
+		if (
+			token === undefined ||
+			token === null ||
+			token === ''
+		) return invalidUser;
+
+		const verify = jwt.verify(token, SECRET);
+
+		if (!verify)
+			return invalidUser;
+
+		return verify as IJWTUserInfo;
+	} catch (error) {
+		console.log(error);
+		return invalidUser;
+	}
 };

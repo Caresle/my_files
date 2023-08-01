@@ -24,7 +24,8 @@ export const getUsers = async (_: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) : Promise<Response> => {
-	if (Object.keys(req.body).length <= 0) return res.json(getError('Invalid JSON'));
+	if (Object.keys(req.body).length <= 0)
+		return res.json(getError('Invalid JSON'));
 
 	const { username, password } = req.body;
 
