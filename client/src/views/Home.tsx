@@ -1,9 +1,10 @@
 import { FC } from "react";
+import Title from "../components/Common/Title";
 
 const Home : FC = () => {
 	return (
 		<div>
-			<h1>Home view</h1>
+			<Title title="Home View" />
 		</div>
 	)
 };

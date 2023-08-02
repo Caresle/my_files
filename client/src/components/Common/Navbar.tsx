@@ -9,6 +9,7 @@ import {
 	ListItem,
 	ListItemButton,
 	ListItemIcon,
+	Typography,
 } from '@mui/material';
 
 import { Menu as MenuIcon } from '@mui/icons-material'
@@ -33,7 +34,9 @@ const Navbar : FC = () => {
 							<ListItemIcon>
 								{ getIcon(e) }
 							</ListItemIcon>
-							{e.name}
+							<Typography variant="body1">
+								{e.name}
+							</Typography>
 						</ListItemButton>
 					</Link>
 				</ListItem>
