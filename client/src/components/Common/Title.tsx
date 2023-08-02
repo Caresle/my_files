@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC } from "react";
 import {
 	Typography
-} from '@mui/material';
+} from "@mui/material";
 
 interface ITitleProps {
 	title: string;
