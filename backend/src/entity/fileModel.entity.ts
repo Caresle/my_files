@@ -11,6 +11,9 @@ export class FileModel extends BaseEntity {
 		id: number;
 
 	@Column()
+		name: string;
+
+	@Column()
 		path: string;
 
 	@Column()
