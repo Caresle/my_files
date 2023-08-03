@@ -2,25 +2,54 @@ import {
 	FC
 } from "react";
 import {
+	Button,
 	Card,
 	CardContent,
 	Container,
 	Typography
 } from "@mui/material";
 
+export enum EColorCard {
+	Red = "red",
+	Pink = "pink",
+	Orange = "orange",
+	Purple = "purple",
+}
+interface IDashboardItem {
+	title: string;
+	color: EColorCard;
+}
 
-const DashboardItem : FC = () => {
+
+export const DashboardItem : FC<IDashboardItem> = (props: IDashboardItem) => {
+	const { title, color } = props;
+
 	return (
 		<Container maxWidth={"sm"} sx={{ my: 2 }}>
-			<Card variant="outlined">
+			<Card variant="outlined" sx={{
+				backgroundColor: color,
+				borderColor: color,
+				color: "white"
+			}}
+			>
 				<CardContent>
-					<Typography variant="h4">
-						Item
+					<Typography sx={{
+						textAlign: "center",
+					}} variant="h5">
+						{ title }
 					</Typography>
+					<Button variant="contained"
+						sx={{
+							backgroundColor: "white",
+							color: "black",
+							":focus-within": {
+								backgroundColor: "purple",
+								color: "red",
+							}
+						}}
+					>Go</Button>
 				</CardContent>
 			</Card>
 		</Container>
 	);
 };
-
-export default DashboardItem;
