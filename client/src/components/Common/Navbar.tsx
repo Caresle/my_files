@@ -29,7 +29,15 @@ const Navbar : FC = () => {
 		if (e.meta?.show) {
 			return (
 				<ListItem key={e.path}>
-					<Link to={e.path}>
+					<Link
+						to={e.path} style={{
+							textDecoration: 'none',
+							color: 'ButtonText',
+							borderRadius: 4,
+							border: '1px solid red',
+							width: '100%'
+						}}
+					>
 						<ListItemButton>
 							<ListItemIcon>
 								{ getIcon(e) }
