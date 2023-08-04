@@ -8,7 +8,11 @@ import {
 	Home as IconHome,
 	Info as IconInfo,
 	Login as IconLogin,
+	Settings as IconSettings,
+	UploadFile as IconFile,
 } from '@mui/icons-material';
+import Settings from "./views/Settings";
+import FilesView from "./views/FilesView";
 interface IMetaData {
 	name?: string;
 	required?: Array<number | null>;
@@ -30,6 +34,24 @@ const routes : Array<IRouteItem> = [
 		component: Home,
 		meta: {
 			icon: IconHome,
+			show: true,
+		}
+	},
+	{
+		name: 'Files',
+		path: '/files',
+		component: FilesView,
+		meta: {
+			icon: IconFile,
+			show: true,
+		}
+	},
+	{
+		name: 'Settings',
+		path: '/settings',
+		component: Settings,
+		meta: {
+			icon: IconSettings,
 			show: true,
 		}
 	},
