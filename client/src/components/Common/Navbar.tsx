@@ -12,10 +12,18 @@ import {
 	Typography,
 } from '@mui/material';
 
-import { Menu as MenuIcon } from '@mui/icons-material'
+import {
+	Menu as MenuIcon,
+	DarkMode as DarkModeIcon,
+	LightMode as LightModeIcon,
+} from '@mui/icons-material'
+import useThemeAppStore from "../../store/themeAppStore";
+
 
 const Navbar : FC = () => {
 	const [drawer, setDrawer] = useState(false);
+
+	const themeStore = useThemeAppStore(state => state);
 
 	const openDrawer = (value: boolean) => {
 		setDrawer(value);
@@ -33,8 +41,6 @@ const Navbar : FC = () => {
 						to={e.path} style={{
 							textDecoration: 'none',
 							color: 'ButtonText',
-							borderRadius: 4,
-							border: '1px solid red',
 							width: '100%'
 						}}
 					>
@@ -58,6 +64,13 @@ const Navbar : FC = () => {
 				<Toolbar>
 					<IconButton onClick={() => openDrawer(true)}>
 						<MenuIcon />
+					</IconButton>
+					<IconButton onClick={themeStore.changeTheme}>
+						{
+							themeStore.useDark ?
+								<LightModeIcon />
+								: <DarkModeIcon />
+						}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
