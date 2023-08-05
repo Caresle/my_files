@@ -75,4 +75,9 @@ const routes : Array<IRouteItem> = [
 	}
 ];
 
+export const getRoutePath = (name: string) : string => {
+	const route = routes.filter(route => route.name.toLowerCase() === name.toLowerCase());
+	return route[0]?.path ?? "";
+};
+
 export default routes;

@@ -29,6 +29,10 @@ const Navbar : FC = () => {
 		setDrawer(value);
 	};
 
+	const textColor = () => {
+		return themeStore.useDark ? 'white' : 'dark';
+	};
+
 	const getIcon = (e: IRouteItem) => {
 		return e.meta?.icon ? <e.meta.icon /> : <></>
 	};
@@ -43,12 +47,15 @@ const Navbar : FC = () => {
 							color: 'ButtonText',
 							width: '100%'
 						}}
+						onClick={() => openDrawer(false)}
 					>
 						<ListItemButton>
 							<ListItemIcon>
 								{ getIcon(e) }
 							</ListItemIcon>
-							<Typography variant="body1">
+							<Typography variant="body1" sx={{
+								color: textColor
+							}}>
 								{e.name}
 							</Typography>
 						</ListItemButton>
@@ -74,7 +81,8 @@ const Navbar : FC = () => {
 					</IconButton>
 				</Toolbar>
 			</AppBar>
-			<Drawer anchor="left" open={ drawer } onClose={() => openDrawer(false)}>
+			<Drawer anchor="left" open={ drawer } onClose={() => openDrawer(false)}
+			>
 				<nav>
 					<ul>
 						{ routes.map(generateRoutes) }

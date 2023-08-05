@@ -7,8 +7,9 @@ import {
 	CardContent,
 	Container,
 	SxProps,
-	Typography
+	Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export enum EColorCard {
 	Red = "red",
@@ -19,11 +20,13 @@ export enum EColorCard {
 interface IDashboardItem {
 	title: string;
 	color: EColorCard;
+	route: string;
 }
 
 
 export const DashboardItem : FC<IDashboardItem> = (props: IDashboardItem) => {
-	const { title, color } = props;
+	const { title, color, route } = props;
+	const navigate = useNavigate();
 
 	const itemButtonStyle : SxProps = () => ({
 		boxShadow: "none",
@@ -43,6 +46,11 @@ export const DashboardItem : FC<IDashboardItem> = (props: IDashboardItem) => {
 		}
 	});
 
+	const changeRoute = () => {
+		console.log(route);
+		navigate(route);
+	};
+
 	return (
 		<Container maxWidth={"sm"} sx={{ my: 2 }}>
 			<Card variant="outlined" sx={{
@@ -60,7 +68,10 @@ export const DashboardItem : FC<IDashboardItem> = (props: IDashboardItem) => {
 					<Button variant="contained"
 						fullWidth
 						sx={itemButtonStyle}
-					>Go</Button>
+						onClick={changeRoute}
+					>
+						Go
+					</Button>
 				</CardContent>
 			</Card>
 		</Container>

@@ -5,6 +5,7 @@ import {
 	Container,
 } from "@mui/material";
 import { DashboardItem, EColorCard } from "./DashboardItem";
+import { getRoutePath } from "../../router";
 
 const Dashboard : FC = () => {
 	return (
@@ -13,9 +14,9 @@ const Dashboard : FC = () => {
 				<CardContent sx={{
 					display: "flex"
 				}}>
-					<DashboardItem title="Files" color={EColorCard.Red} />
-					<DashboardItem title="Settings" color={EColorCard.Orange} />
-					<DashboardItem title="About" color={EColorCard.Purple} />
+					<DashboardItem title="Files" color={EColorCard.Red} route={getRoutePath('files')} />
+					<DashboardItem title="Settings" color={EColorCard.Orange} route={getRoutePath('settings')} />
+					<DashboardItem title="About" color={EColorCard.Purple} route={getRoutePath('about')} />
 				</CardContent>
 			</Card>
 		</Container>
