@@ -47,7 +47,6 @@ export const DashboardItem : FC<IDashboardItem> = (props: IDashboardItem) => {
 	});
 
 	const changeRoute = () => {
-		console.log(route);
 		navigate(route);
 	};
 

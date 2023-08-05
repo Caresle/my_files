@@ -20,6 +20,7 @@ const lightTheme = createTheme({
 
 const App : FC = () => {
 	const useDark = useThemeAppStore(state => state.useDark);
+
 	return (
 		<ThemeProvider theme={useDark ? darkTheme : lightTheme}>
 			<CssBaseline />
