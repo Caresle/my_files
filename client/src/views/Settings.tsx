@@ -1,8 +1,9 @@
 import { FC } from "react";
+import MainCard from "../components/settings/MainCard";
 
 const Settings : FC = () => {
 	return (
-		<h1>Hello settings</h1>
+		<MainCard />
 	);
 };
 

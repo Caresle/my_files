@@ -5,16 +5,25 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Common/Navbar'
 import routes from './router'
 import useThemeAppStore from './store/themeAppStore';
+import customThemeColors from './config/customThemeColors';
+
 
 const darkTheme = createTheme({
 	palette: {
-		mode: 'dark'
+		mode: 'dark',
+		primary: customThemeColors.palette?.primary,
+		secondary: customThemeColors.palette?.secondary,
+		background: {
+			default: '#232323',
+		}
 	}
 });
 
 const lightTheme = createTheme({
 	palette: {
-		mode: 'light'
+		mode: 'light',
+		primary: customThemeColors.palette?.primary,
+		secondary: customThemeColors.palette?.secondary,
 	}
 });
 
