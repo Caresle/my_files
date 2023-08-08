@@ -1,9 +1,10 @@
 import { FC } from "react";
+import AboutContent from "../components/about/AboutContent";
 
 const About : FC = () => {
-    return (
-        <h1>About view</h1>
-    );
+	return (
+		<AboutContent />
+	);
 };
 
 export default About;
