@@ -4,14 +4,9 @@ import {
 	Container,
 	CardContent,
 	CardHeader,
-	Accordion,
-	AccordionSummary,
-	AccordionDetails,
-	Button
 } from '@mui/material';
-import {
-	ExpandMoreOutlined as ExpandMoreIcon
-} from '@mui/icons-material';
+import UISettings from './UISettings';
+import GeneralSettings from './GeneralSettings';
 
 const MainCard : FC = () => {
 	return (
@@ -19,15 +14,11 @@ const MainCard : FC = () => {
 			<Card>
 				<CardHeader title="Settings" sx={{textAlign: 'center'}} />
 				<CardContent>
-					<Button variant='contained'> asjdhkasd</Button>
-					<Accordion variant='outlined'>
-						<AccordionSummary expandIcon={<ExpandMoreIcon />} >
-							General
-						</AccordionSummary>
-						<AccordionDetails>
+					{/* General settings */}
+						<GeneralSettings />
 
-						</AccordionDetails>
-					</Accordion>
+					{/* UI Settings */}
+					<UISettings />
 				</CardContent>
 			</Card>
 		</Container>
