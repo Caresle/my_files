@@ -13,6 +13,7 @@ import {
 } from '@mui/icons-material';
 import Settings from "./views/Settings";
 import FilesView from "./views/FilesView";
+import SignUp from "./views/SignUp";
 interface IMetaData {
 	name?: string;
 	required?: Array<number | null>;
@@ -68,6 +69,15 @@ const routes : Array<IRouteItem> = [
 		name: 'Login',
 		path: '/login',
 		component: Login,
+		meta: {
+			icon: IconLogin,
+			show: false
+		}
+	},
+	{
+		name: 'SignUp',
+		path: '/signup',
+		component: SignUp,
 		meta: {
 			icon: IconLogin,
 			show: false
