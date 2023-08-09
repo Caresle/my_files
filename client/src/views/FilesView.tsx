@@ -1,10 +1,11 @@
 import {
 	FC
 } from "react";
+import FileContainer from "../components/files/FileContainer";
 
 const FilesView : FC = () => {
 	return (
-		<h1>Files view</h1>
+		<FileContainer />
 	);
 };
 
