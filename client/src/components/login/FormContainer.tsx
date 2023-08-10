@@ -11,9 +11,10 @@ import GeneralAlert, { ESeverityAlert, IGeneralAlertProps } from '../Common/Gene
 
 const FormContainer : FC = () => {
 	const [ errors, setErrors ] = useState<IGeneralAlertProps[]>([]);
+	const [ username, setUsername ] = useState('');
+	const [ password, setPassword ] = useState('');
 
 	const handleLogin = () => {
-		console.log('login');
 		const error : IGeneralAlertProps = {
 			severity: ESeverityAlert.Error,
 			text: 'There was an error login the user',
@@ -22,6 +23,11 @@ const FormContainer : FC = () => {
 		};
 
 		setErrors([...errors, error]);
+	};
+
+	const updatePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const newPassword = event.target.value;
+		setPassword(newPassword);
 	};
 
 	return (
@@ -45,7 +51,7 @@ const FormContainer : FC = () => {
 			<TextField label="Username" required
 				fullWidth sx={{ my: 2 }}
 			/>
-			<TextField label="Password" type="password" required />
+			<TextField label="Password" type="password" required onInput={event => updatePassword(event)} />
 			<Button onClick={handleLogin} variant="contained" size="large" sx={{ my: 2 }}>Login</Button>
 		</FormControl>
 	);

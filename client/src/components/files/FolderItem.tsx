@@ -4,8 +4,10 @@ import {
 import {
 	Folder as FolderIcon
 } from '@mui/icons-material';
-import { Box } from '@mui/material';
-
+import {
+	Box,
+	Button
+} from '@mui/material';
 
 interface IFolderItem {
 	name: string;
@@ -14,7 +16,7 @@ interface IFolderItem {
 const FolderItem : FC<IFolderItem> = (props: IFolderItem) => {
 	const { name, } = props;
 	return (
-		<Box sx={{
+		<Button sx={{
 			display: 'flex',
 			alignItems: 'center',
 		}}>
@@ -22,7 +24,7 @@ const FolderItem : FC<IFolderItem> = (props: IFolderItem) => {
 			<Box sx={{ mx: 1 }}>
 				{ name }
 			</Box>
-		</Box>
+		</Button>
 	);
 };
 
