@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.3.67",
     "flowbite": "^1.8.1",
     "flowbite-vue": "^0.1.0",
     "pinia": "^2.1.7",
