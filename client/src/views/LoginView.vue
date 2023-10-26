@@ -6,6 +6,11 @@ import {
     FwbButton,
 } from 'flowbite-vue';
 import SwitchTheme from '../components/Theme/SwitchTheme.vue'
+import router from '../router/router';
+
+const goToSignUp = () => {
+    router.push({name: "signup"})
+}
 </script>
 
 <template>
@@ -23,6 +28,9 @@ import SwitchTheme from '../components/Theme/SwitchTheme.vue'
             </div>
             <div class="my-4 w-full flex justify-center">
                 <fwb-button class="w-full">Login</fwb-button>
+            </div>
+            <div @click="goToSignUp">
+                <div class="text-white">Create an account</div>
             </div>
             <SwitchTheme />
         </div>
