@@ -2,8 +2,11 @@
 import {
     FwbHeading,
 } from 'flowbite-vue';
+import MainLayout from '../layout/MainLayout.vue';
 </script>
 
 <template>
-    <FwbHeading tag="h1">User view</FwbHeading>
+    <MainLayout>
+        <FwbHeading tag="h1">User view</FwbHeading>
+    </MainLayout>
 </template>
