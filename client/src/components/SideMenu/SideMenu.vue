@@ -16,7 +16,7 @@ const routesToShow = computed(() => {
 </script>
 
 <template>
-    <div class="w-2/12 p-2 dark:bg-gray-700 min-h-screen
+    <div class="max-w-xs w-2/12 p-2 dark:bg-gray-700 min-h-screen
         bg-gray-200
     "
     >
