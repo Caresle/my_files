@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-// import entities from './entity/entity';
+import entities from './entity/entity';
 import Environment from './config/environment';
 
 interface IDBConfig {
@@ -29,6 +29,6 @@ export const AppDataSource = new DataSource({
 	username: dbConfig.username,
 	password: dbConfig.password,
 	port: dbConfig.port,
-	// entities,
-	synchronize: true,
+	entities,
+	// synchronize: true,
 });

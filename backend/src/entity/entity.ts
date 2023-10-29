@@ -1,4 +1,14 @@
+import { User } from "./user.entity";
+import { FileEntity } from "./file.entity";
 
-// const entities = [];
+export const entitiesList = {
+	user: User,
+    file: FileEntity,
+};
 
-// export default entities;
+const entities = [
+	entitiesList.user,
+	entitiesList.file,
+];
+
+export default entities;
