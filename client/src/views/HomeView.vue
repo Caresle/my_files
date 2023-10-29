@@ -28,7 +28,7 @@ import FileRow from '../components/File/FileRow.vue';
                     <FwbButton class="mx-1" color="alternative">Shared files</FwbButton>
                 </div>
                 <div class="w-5/12">
-                    <FwbInput>
+                    <FwbInput placeholder="Search">
                         <template #prefix>
                             <svgIcon type="mdi" :path="mdiMagnify" class="text-gray-500" />
                         </template>
