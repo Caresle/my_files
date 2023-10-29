@@ -17,7 +17,7 @@ import svgIcon from '@jamescoyle/vue-icon';
         <SideMenu />
         
         <!-- Content -->
-        <div class="max-w-5xl w-10/12">
+        <div class="max-w-5xl w-10/12 mx-auto">
             <!-- Header -->
             <div class="h-16 border-b border-b-gray-400 ml-1 p-2 flex items-center">
                 <FwbHeading tag="h2" class="text-gray-700">File Manager</FwbHeading>
